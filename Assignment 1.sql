@@ -57,26 +57,33 @@ VALUES
 (3010,1309.95,STR_TO_DATE("6-10-1990","%d-%m-%Y"),2004,1002),
 (3011,9891.88,STR_TO_DATE("6-10-1990","%d-%m-%Y"),2006,1001);
 
-#Question 1
-SELECT COUNT(Sname) AS 'Count of salespeople name starting with a/A'
+
+#Question 1 : Count the number of Salesperson whose name begin with ‘a’/’A’.
+SELECT Sname,COUNT(Sname) AS 'Count of salespeople name starting with a/A'
  FROM salespeople 
  WHERE sname LIKE 'a%';
  
-#question 2
-SELECT sname AS 'Salesperson name'
+#question 2 : Display all the Salesperson whose all orders worth is more than Rs. 2000.
+SELECT Onum,sname AS 'Salesperson name',Amt
 FROM salespeople 
-JOIN orders ON salespeople.snum=orders.snum 
-GROUP BY orders.snum HAVING sum(amt)>2000;
-#question 3
-SELECT COUNT(Sname) AS 'count from newyork'
+INNER JOIN orders ON salespeople.snum=orders.snum 
+ HAVING Amt>2000;
+
+#question 3 : Count the number of Salesperson belonging to Newyork.
+SELECT Sname,COUNT(Sname) AS 'count from newyork',city
  FROM salespeople
  WHERE City LIKE 'newyork';
-#question 4
+ 
+ 
+#question 4 : Display the number of Salespeople belonging to London and belonging to Paris.
 SELECT COUNT(Sname)  AS 'count from london' FROM salespeople WHERE City='london' AND City='paris'; 
 -- SELECT COUNT(sname) AS 'count from paris' FROM salespeople WHERE city LIKE 'paris';
-#question 5
+
+
+#question 5 :Display the number of orders taken by each Salesperson and their date of orders.
 SELECT sname AS 'name',Odate AS 'order date',COUNT(orders.snum) AS 'number of orders'
 FROM orders 
 RIGHT JOIN salespeople ON salespeople.snum=orders.snum 
 GROUP BY orders.odate,orders.snum 
-ORDER BY salespeople.sname;
+ORDER BY salespeople.sname ;
+
