@@ -1,4 +1,3 @@
-localhost = f"{host}:{port}"
 """
 1. SQLite
 SQLite is a lightweight, file-based database.
@@ -63,7 +62,7 @@ conn.close()
 
 from sqlalchemy import create_engine
 
-engine = create_engine("mysql+pymysql://your_username:your_password@localhost/your_database")
+engine = create_engine("mysql+pymysql://your_username:your_password@localhost:port/your_database")
 with engine.connect() as connection:
     result = connection.execute("SELECT VERSION();")
     print("MySQL version:", result.fetchone())
@@ -105,7 +104,7 @@ conn.close()
 #  c) Using SQLAlchemy
 from sqlalchemy import create_engine
 
-engine = create_engine("postgresql+psycopg2://your_username:your_password@localhost/your_database")
+engine = create_engine("postgresql+psycopg2://your_username:your_password@localhost:port/your_database")
 with engine.connect() as connection:
     result = connection.execute("SELECT version();")
     print("PostgreSQL version:", result.fetchone())
@@ -135,7 +134,7 @@ conn.close()
 
 from sqlalchemy import create_engine
 
-engine = create_engine("mssql+pyodbc://your_username:your_password@localhost/your_database?driver=ODBC+Driver+17+for+SQL+Server")
+engine = create_engine("mssql+pyodbc://your_username:your_password@localhost:port/your_database?driver=ODBC+Driver+17+for+SQL+Server")
 with engine.connect() as connection:
     result = connection.execute("SELECT @@VERSION;")
     print("SQL Server version:", result.fetchone())
