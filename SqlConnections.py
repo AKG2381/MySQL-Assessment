@@ -1,3 +1,4 @@
+localhost = f"{host}:{port}"
 """
 1. SQLite
 SQLite is a lightweight, file-based database.
